@@ -1,0 +1,148 @@
+/* styles.css */
+
+.dashboard-header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.dropdown_profile {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
+
+.profileMenu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.profileMenu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.profileMenu li a {
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown_profile:hover .profileMenu {
+  display: block;
+}<
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  .table th, .table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .table th {
+    background-color: #f0f0f0;
+  }
+
+  /* Add some color to the icons */
+  [data-feather] {
+    color: #337ab7;
+  }
+
+  [data-feather="check"] {
+    color: #2ecc71;
+  }
+
+  [data-feather="x-circle"] {
+    color: #e74c3c;
+  }
+
+  /* Add some hover effects to the links */
+  a:hover {
+    text-decoration: none;
+  }
+
+  a:hover [data-feather] {
+    color: #23527c;
+  }
+
+  a:hover [data-feather="check"] {
+    color: #1e8651;
+  }
+
+  a:hover [data-feather="x-circle"] {
+    color: #c0392b;
+  }
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: #333;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #000;
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.card-text {
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+    #sidebar {
+        display: none;
+    }
+}

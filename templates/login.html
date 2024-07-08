@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque numérique</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="static/owl.carousel.min.css">
+   <link rel="stylesheet" href="static/fontawesomeall.min.css">
+    <link rel="stylesheet" href="static/owl.theme.default.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="static/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" >
+
+  <link href="static/bootstrap.min.css" rel="stylesheet" >
+
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        .card-login {
+            margin: auto;
+            max-width: 400px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .switch-link {
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 100px">
+            <a class="navbar-brand" href="#">
+                <img src="static/images/output-onlinegiftools.gif" alt="Logo" style="height: 250px;margin-top: 60px;width:400px">
+            </a>
+      <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="wrapper d-flex ">
+                    <div class="search_box">
+                        <div class="dropdown" style="width:185px;background-color: rgba(249, 249, 249, 0.9);" >
+                            <div class="default_option">Parcourir</div>
+                            <ul>
+                                <li data-value="Tout">Tout</li>
+                                <li data-value="Nom">Nom</li>
+                                <li data-value="Titre">Titre</li>
+                                <li data-value="Date">Date</li>
+                            </ul>
+                        </div>
+                        <div class="search_field" style="width:600px">
+                            <input type="text" class="input" placeholder="Recherche" id="search-input" style="height:55px;">
+                            <i class="fas fa-search"></i>
+                            <div class="dropdown-search">
+
+                                <div class="dropdown-content">
+                                  <!-- Dropdown items will be inserted here -->
+                                  <a href="#">Item 1<span class="remove-history">X</span></a>
+                                  <a href="#">Item 2<span class="remove-history">X</span></a>
+                                  <a href="#">Item 3<span class="remove-history">X</span></a>
+
+                        </div>
+                    </div>
+                            </div>
+
+        </div>
+                            <button id="Button" class="btn btn-primary ml-2" style="height:55px;">Publier</button>
+
+</div>
+
+            </div>
+                    </div>
+
+  </nav>
+
+
+
+    <div class="frame">
+    <button type="button" class="btn-close close"></button>
+    <div class="container_upload">
+      <div class="overlay">
+        <div class="title">
+          <h6>Glisser le fichier ici</h6>
+        </div>
+        <div class="dropzone">
+          <img src="static/images/upload.svg" class="upload-icon" />
+          <input type="file" class="upload-input" />
+          <input type="file" id="fileID" accept=".doc,.docx,.pdf" onchange="handleFileUpload(this)">
+          <span id="file-name"></span>
+          <label for="fileID" class="btn">Choisir un fichier</label>
+        </div>
+        <button type="button" class="btn btn-primary upload" style="display:none;" onclick="uploadFile()">Publier</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="form-popup">
+    <button type="button" class="btn-close close"></button>
+    <div class="center">
+      <div class="title">
+        <h1>Information</h1>
+      </div>
+
+      <form class="upload-form">
+        <div class="form-group">
+                    <label for="exampleInputTitle">TITRE</label>
+                    <input type="text" class="form-control" id="exampleInputTitle" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEcole">Ecole</label>
+                    <input type="text" class="form-control" id="exampleInputEcole"  readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUniversity">University</label>
+                    <input type="text" class="form-control" id="exampleInputUniversity"   readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputAuthor">Auteur</label>
+                    <input type="text" class="form-control" id="exampleInputAuthor"  readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputMention">Mention prédite</label>
+                    <input type="text" class="form-control" id="exampleInputMention"   readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputDate">Date</label>
+                    <input type="text" class="form-control" id="exampleInputDate"  readonly>
+                </div>
+                <button type="button" class="btn btn-secondary edit" onclick="toggleEdit()">Editer</button>
+                <button type="button" class="btn btn-primary validate">Valider</button>
+            </form>
+
+    </div>
+  </div>
+<section class="mention_section">
+    <div class="owl-carousel custom-carousel owl-theme">
+      <div class="item active" id="electronics" style="background-image: url('static/images/electonic.png')">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item active" id="geologie" style="background-image: url('static/images/geol.png')">
+        <div class="item-desc">
+        </div>
+      </div>
+        <div class="item active" id="mine" style="background-image: url('static/images/photo_2024-06-16 11.24.55.jpeg')">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item" id="btp" style="background-image: url('static/images/photo_2024-06-16 11.24.58.jpeg')">
+        <div class="item-desc">
+        </div>
+      </div>
+        <div class="item active" id="petroliere" style="background-image: url('static/images/photo_2024-06-16 11.24.59.jpeg')">
+        <div class="item-desc">
+        </div>
+      </div>
+
+      <div class="item" id="hydraulique" style="background-image: url('static/images/photo_2024-06-16 11.24.50-Photoroom.png') ;">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item" id="igat" style="background-image: url('static/images/photo_2024-06-16 11.25.03.jpeg') ;">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item" id="tco" style="background-image: url('static/images/photo_2024-06-16 11.24.53.jpeg');">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item" id="ge" style="background-image: url('static/images/photo_2024-06-16 11.24.52-Photoroom.png');">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item"  id="mto" style="background-image: url('static/images/Screenshot_2024-06-08_at_16.21.49-removebg-preview.png');">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item" id="gmi" style="background-image: url('static/images/photo_2024-06-16 11.25.05.jpeg');">
+        <div class="item-desc">
+        </div>
+      </div>
+      <div class="item" id="gpci" style="background-image: url('static/images/gpci.jpeg');">
+        <div class="item-desc">
+        </div>
+          </div>
+      <div class="item" id="sim" style="background-image: url('static/images/photo_2024-06-16 11.24.56.jpeg');">
+        <div class="item-desc">
+        </div>
+      </div>
+        <div class="item" id="urbanisme" style="background-image: url('static/images/travaux-publics.png');">
+        <div class="item-desc">
+        </div>
+      </div>
+
+    <div id="auth-status" data-logged-in="{{ logged_in | tojson }}" data-username="{{ username }}"></div>
+</div>
+</section>
+<section class="books">
+    <div class="row">
+      <div class="col-sm-6 " style="display:flex;">
+          <div class="popular-books">
+            <div class="main-menu">
+                <div class="genre"></div>
+                <div class="search-results"></div>
+                <div class="search-results-all">
+                    <h5>Populaires</h5>
+                      {% for book in books %}
+                            <div class="card bg-light-subtle {% if logged_in and book.filename in downloaded_files %}border-success{% endif %}">
+                                <img src="data:image/png;base64,{{ book.cover_image_base64 }}" class="card-img-top" alt="..." style="width: 140px; min-width: 130px;height: 180px;">
+                                <div class="card-body">
+                                    <div class="text-section">
+                                        <!-- Apply CSS styles to limit the width and enable text wrapping -->
+                                        <h5 class="card-title" style="overflow-wrap: break-word; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ book.title }}</h5>
+                                        <h6 class="card-title">{{ book.author }}</h6>
+                                        <p class="card-text" style="overflow-wrap: break-word; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ book.mention }}</p>
+                                        <p class="card-text" style="overflow-wrap: break-word; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ book.theme }}</p>
+                                        <p class="card-text">{{ book.date }}</p>
+                                    </div>
+                                    <div class="cta-section ">
+                                        <a href="{{ book.download_link }}" class="btn btn-dark">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                      {% endfor %}
+                </div>
+
+            </div>
+          </div>
+      </div>
+
+
+<div class="col-sm-6">
+        <div class="card-login">
+        <h2 id="formTitle">Formulaire de Connexion</h2>
+
+        <!-- LOGIN FORMULAIRE -->
+        <form id="loginForm" method="POST" action="/login">
+            <div class="form-group">
+                <label for="loginEmail">Adresse e-mail</label>
+                <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Entrez votre e-mail">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Mot de passe</label>
+                <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Mot de passe">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+            <a href="#" class="fp">Mot de passe oublié?</a>
+            <div class="footer_card mt-3">
+                <p>Pas encore membre? <span class="switch-link" onclick="showSignup()">Inscrivez-vous maintenant</span></p>
+            </div>
+        </form>
+
+        <!-- SIGNUP FORMULAIRE -->
+        <form id="signupForm" style="display:none;" method="POST" action="/signup">
+            <div class="form-group">
+                <label for="signupName">Nom</label>
+                <input type="text" class="form-control" id="signupName" name="fullname" placeholder="Entrez votre nom">
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Adresse e-mail</label>
+                <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Entrez votre e-mail">
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Mot de passe</label>
+                <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Mot de passe">
+            </div>
+            <div class="form-group">
+                <label for="signupConfirmPassword">Confirmer le mot de passe</label>
+                <input type="password" class="form-control" id="signupConfirmPassword" name="confirm_password"  placeholder="Confirmez le mot de passe">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Inscription</button>
+            <div class="footer_card mt-3">
+                <p>Déjà membre? <span class="switch-link" onclick="showLogin()">Connectez-vous maintenant</span></p>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+    <!-- Bootstrap JS -->
+
+    <script src="static/bootstrap.min.js"></script>
+<script src="static/popper.min.js" ></script>
+
+  <script src="static/jquery-3.7.1.min.js"></script>
+  <script src="static/owl.carousel.min.js"></script>
+
+    <script src="static/script.js"></script>
+<script>
+    function showLogin() {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('formTitle').textContent = 'Login Form';
+    }
+
+    function showSignup() {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('signupForm').style.display = 'block';
+        document.getElementById('formTitle').textContent = 'Signup Form';
+    }
+</script>
+</body>
+
+</html>

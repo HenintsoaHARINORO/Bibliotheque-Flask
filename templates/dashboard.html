@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style_dashboard.css') }}" rel="stylesheet">
+    <style>
+        .table-responsive {
+            overflow-y: auto;
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-md-4">
+                <div class="dashboard-header">
+                    <h1 class="h2">Tableau de bord</h1>
+                    <div class="dropdown-container-profile ml-auto">
+                        {% if logged_in %}
+                            <div class="dropdown_profile">
+                                <!-- Profile avatar -->
+                                <div class="avatar">
+                                    <img src="static/images/vecteezy_default-profile-picture-avatar-user-avatar-icon-person_21548095.jpg" alt="Profile Avatar">
+                                </div>
+                                <ul class="profileMenu">
+                                    <!-- Menu links -->
+                                    <li>{{ username }}</li>
+                                    <li><a href="/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <div class="login-container">
+                                <!-- Menu links -->
+                                <button class="btn btn-success" id="LoginButton" type="button" style="height:55px;">Log in</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">En attente</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" id="pending-count">0 livres</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Approuvés</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" id="approved-count">0 livres</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Refusés</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" id="refused-count">0 livres</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="book-details" class="mt-4">
+                    <!-- Default tables for pending, approved, and refused submissions -->
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Livres en attente</h1>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>ID_Livre</th>
+                                            <th>Demandeur</th>
+                                            <th>Attestation</th>
+                                            <th>Livre</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pending-table-body">
+                                        <!-- Pending books will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Livres approuvés</h1>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>ID_Livre</th>
+                                            <th>Demandeur</th>
+                                            <th>Attestation</th>
+                                            <th>Livre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="approved-table-body">
+                                        <!-- Approved books will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Livres non approuvés</h1>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>ID_Livre</th>
+                                            <th>Demandeur</th>
+                                            <th>Attestation</th>
+                                            <th>Livre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="refused-table-body">
+                                        <!-- Refused books will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace();
+
+        function updateCounts() {
+            fetch('/fetch_files/pending')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('pending-count').innerText = `${data.files.length} livres`;
+                    loadTable('pending', data.files);
+                });
+
+            fetch('/fetch_files/approved')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('approved-count').innerText = `${data.files.length} livres`;
+                    loadTable('approved', data.files);
+                });
+
+            fetch('/fetch_files/refused')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('refused-count').innerText = `${data.files.length} livres`;
+                    loadTable('refused', data.files);
+                });
+        }
+
+        function loadTable(status, data) {
+            const tableBody = document.getElementById(`${status}-table-body`);
+            tableBody.innerHTML = '';
+            data.forEach(file => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${file.id}</td>
+                    <td>${file.student_name}</td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#pdf-modal" onclick="viewPDF('${file.correction_file}')">
+                            <span data-feather="book-open"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#pdf-modal" onclick="viewPDF('${file.thesis_file}')">
+                            <span data-feather="book-open"></span>
+                        </a>
+                    </td>
+                    ${status === 'pending' ? `
+                        <td>
+                            <a href="/accept_file/${file.id}"><span data-feather="check"></span></a>
+                            <a href="/reject_file/${file.id}"><span data-feather="x-circle"></span></a>
+                        </td>
+                    ` : ''}
+                `;
+                tableBody.appendChild(row);
+            });
+            feather.replace();
+        }
+
+        function viewPDF(fileUrl) {
+            document.getElementById('pdf-embed').src = fileUrl;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCounts();
+        });
+    </script>
+
+    <!-- PDF Viewer Modal -->
+    <div class="modal fade" id="pdf-modal" tabindex="-1" role="dialog" aria-labelledby="pdf-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pdf-modal-label">PDF Viewer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <embed id="pdf-embed" src="" width="100%" height="500px" type="application/pdf">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

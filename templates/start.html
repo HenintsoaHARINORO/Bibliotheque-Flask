@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haikaroka</title>
+    <link rel="stylesheet" href="static/start_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="branding-section">
+        <img src="static/images/output-onlinegiftools.gif" alt="Logo" class="logo">
+        <p>Bienvenue sur Haikaroka, la plateforme ultime pour déposer, explorer et télécharger des mémoires de fin d'étude. Rejoignez-nous et découvrez un monde de connaissances à portée de main.</p>
+        <div class="buttons">
+            <button class="deposit-button">Déposer un livre</button>
+            <button class="member-button">Devenir membre</button>
+        </div>
+    </div>
+    <div class="form-container" id="form-container">
+        <div class="frame">
+        <button type="button" class="btn-close close" onclick="closeForm()">×</button>
+            <div class="container_upload">
+                <div class="overlay">
+                    <form id="memoir-form">
+                        <div class="form-group">
+                            <label for="exampleInputnumber">N° ETUDIANT</label>
+                            <input type="text" class="form-control" id="exampleInputnumber" placeholder="N° ETUDIANT">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputSchool">Etablissement</label>
+                            <input type="text" class="form-control" id="exampleInputSchool" placeholder="Entrez l'école">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Nom</label>
+                            <input type="text" class="form-control" id="exampleInputName" placeholder="Entrez votre nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail">Email</label>
+                            <input type="text" class="form-control" id="exampleInputEmail" placeholder="Entrez votre e-mail">
+                        </div>
+                    </form>
+
+                    <form id="memoir-files-form">
+                        <div class="form-group">
+                            <label for="memoir-files">Livre de mémoire</label>
+                            <input type="file" id="memoir-files" name="memoir-files" accept=".pdf,.doc,.docx">
+                        </div>
+                    </form>
+
+                    <form id="correction-attestation-form">
+                        <div class="form-group">
+                            <label for="correction-attestation">Attestation de correction</label>
+                            <input type="file" id="correction-attestation" name="correction-attestation" accept=".pdf,.doc,.docx">
+                        </div>
+                    </form>
+
+                    <button type="button" class="btn btn-primary upload" style="display:none;" onclick="uploadFiles()" id="publishButton">Publier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-popup" id="infoPopup">
+        <button type="button" class="btn-close close" onclick="closeInfoPopup()">×</button>
+        <div class="center">
+            <div class="title">
+                <h1>Information</h1>
+            </div>
+            <form class="upload-form">
+                <div class="form-group">
+                    <label for="exampleInputTitle">TITRE</label>
+                    <input type="text" class="form-control" id="exampleInputTitle" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEcole">Ecole</label>
+                    <input type="text" class="form-control" id="exampleInputEcole" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUniversity">University</label>
+                    <input type="text" class="form-control" id="exampleInputUniversity" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputAuthor">Auteur</label>
+                    <input type="text" class="form-control" id="exampleInputAuthor" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputMention">Mention prédite</label>
+                    <input type="text" class="form-control" id="exampleInputMention" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputTheme">Theme</label>
+                    <input type="text" class="form-control" id="exampleInputTheme" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputDate">Date</label>
+                    <input type="text" class="form-control" id="exampleInputDate" readonly>
+                </div>
+                <button type="button" class="btn btn-secondary edit" onclick="toggleEdit()">Editer</button>
+                <button type="button" class="btn btn-primary validate">Valider</button>
+            </form>
+        </div>
+    </div>
+    <script src="static/bootstrap.min.js"></script>
+<script src="static/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="static/jquery-3.7.1.min.js"></script>
+  <script src="static/owl.carousel.min.js"></script>
+    <script src="static/start_scripts.js"></script>
+</body>
+</html>
