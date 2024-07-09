@@ -10,3 +10,4 @@ spacy~=3.7.4
 SQLAlchemy~=2.0.30
 gensim~=4.3.2
 numpy~=1.24.4
+gunicorn~=20.1.0
