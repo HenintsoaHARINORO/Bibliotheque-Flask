@@ -12,3 +12,4 @@ gensim~=4.3.2
 numpy~=1.24.4
 gunicorn~=20.1.0
 openpyxl
+psycopg2-binary
