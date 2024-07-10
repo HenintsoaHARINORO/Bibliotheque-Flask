@@ -57,6 +57,7 @@ def serve_image_route(filename):
     return serve_image(filename)
 
 
+""" 
 @app.route('/upload', methods=['POST'])
 def upload_file_route():
     return upload_file()
@@ -64,7 +65,7 @@ def upload_file_route():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_route():
-    return signup()
+    return signup()"""
 
 
 @app.route('/search_theme', methods=['POST'])
@@ -86,10 +87,10 @@ def signup2_route():
 def login2_route():
     return login2()
 
-
+"""
 @app.route('/save', methods=['POST'])
 def save_file_data_route():
-    return save_file_data()
+    return save_file_data()"""
 
 
 @app.route('/save2', methods=['POST'])
@@ -101,10 +102,10 @@ def save_file_data_2_route():
 def search_route():
     return search()
 
-
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login_route():
-    return login()
+    return login()"""
 
 
 @app.route('/logout')
@@ -138,4 +139,4 @@ def login22_route():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0',port=5100)
