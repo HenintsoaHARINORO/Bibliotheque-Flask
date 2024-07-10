@@ -5,9 +5,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+#load_dotenv()
 # Define database credentials
-DATABASE_URL = os.getenv('DATABASE_URL')
+# DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = os.environment.get('DATABASE_URL')
 #Create engine and session
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
