@@ -15,5 +15,7 @@ openpyxl
 psycopg2-binary
 python-dotenv
 scipy==1.12
-gensim
 pymuPDF
+sentence_transformers
+FrenchLefffLemmatizer @ git+https://github.com/ClaudeCoulombe/FrenchLefffLemmatizer.git
+fr_core_sm_news
