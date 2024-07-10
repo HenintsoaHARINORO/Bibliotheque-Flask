@@ -17,7 +17,6 @@ from datetime import datetime
 
 from werkzeug.utils import secure_filename
 
-from app.models import UploadedFile, User
 from app.new_models import Student, File, SearchHistory, Download
 from script.similarity_search import find_top_filenames
 from script.extraction_with_predicted import extract_and_predict
@@ -187,7 +186,7 @@ def download_pdf(filename):
                      as_attachment=True,
                      download_name=filename)
 
-
+""" 
 def signup():
     if request.method == 'POST':
         fullname = request.form['fullname']
@@ -207,7 +206,7 @@ def signup():
         else:
             return "Passwords do not match", 400
     return render_template('login.html')
-
+"""
 
 from flask import request, jsonify
 
@@ -356,7 +355,7 @@ def search():
     else:
         return jsonify(result_list=result_list, downloaded_files=downloaded_files)
 
-
+""" 
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -418,7 +417,7 @@ def login():
 
     return render_template('login.html', books=top_5_books, logged_in=logged_in, username=username)
 
-
+"""
 def remove_history():
     data = request.json
     fullname = data.get('user_id')
@@ -926,7 +925,7 @@ def submit_student_info():
         if session:
             session.close()
 
-
+""" 
 def upload_file():
     try:
         file = request.files['file']
@@ -1042,7 +1041,7 @@ def save_file_data():
             class_name='error'  # Class for styling
         ), 404
 
-
+"""
 def save_file_data_2():
     data = request.json
     filename = data['filename']
