@@ -13,3 +13,7 @@ numpy~=1.24.4
 gunicorn~=20.1.0
 openpyxl
 psycopg2-binary
+python-dotenv
+scipy==1.12
+gensim
+pymuPDF
