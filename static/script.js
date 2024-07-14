@@ -295,7 +295,7 @@ document.querySelector('.validate').addEventListener('click', async function () 
                 body: JSON.stringify(data)
             });
 
-if (response.ok) {
+            if (response.ok) {
                 Swal.fire({
                     title: 'Demande reçue!',
                     text: 'Nous avons reçu votre demande. Notre bibliothécaire vous répondra dans les plus brefs délais.',
@@ -315,13 +315,16 @@ if (response.ok) {
                 });
             }
         } catch (error) {
-            Swal.fire({
-                    title: 'Erreur',
-                    text: 'Échec de l\'enregistrement des données. Veuillez réessayer.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+    Swal.fire({
+        title: 'Erreur',
+        text: 'Échec de l\'enregistrement des données. Veuillez réessayer.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    }).then(() => {
+            // You can add code here to be executed after the error modal is closed
         });
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function () {
   const dropdown = document.querySelector('.dropdown');
@@ -757,6 +760,7 @@ $('.item').on('click', function() {
                     }
                 });
                 break;
+
         case 'ge':
                 // Handle click event for electronics item
                 console.log('ge item clicked');
@@ -765,7 +769,7 @@ $('.item').on('click', function() {
                     url: '/search_mention',
                     type: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify({ search_query: 'genie geologique' }), // Set the search query
+                    data: JSON.stringify({ search_query: 'genie electrique' }), // Set the search query
                     success: function(response) {
                         // Process the response
                         console.log(response);
